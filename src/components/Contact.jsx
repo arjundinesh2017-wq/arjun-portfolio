@@ -21,7 +21,7 @@ const contacts = [
   {
     icon: FiMail,
     label: 'Email',
-    value: 'arjundinesh2017@email.com',
+    value: 'arjundinesh2017@gmail.com',
     href: 'mailto:arjundinesh2017@gmail.com',
   },
   {
