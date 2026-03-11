@@ -1,6 +1,17 @@
 import { motion } from 'framer-motion'
 
 const experiences = [
+
+  {
+    role: 'Software Engineer',
+    company: 'Ezyxam',
+    year: '2026-Present',
+    highlights: [
+      'Developing a Learning Management System',
+      'Building scalable learning workflows',
+      'Improving platform stability',
+    ],
+  },
   {
     role: 'Software Engineer',
     company: 'Rayblaze Global Solutions',
@@ -13,16 +24,7 @@ const experiences = [
     year: '2022-2024',
     highlights: ['Built Laravel applications', 'Integrated APIs', 'Collaborated with frontend teams'],
   },
-  {
-    role: 'Software Engineer',
-    company: 'Ezyxam',
-    year: '2026-Present',
-    highlights: [
-      'Developing a Learning Management System',
-      'Building scalable learning workflows',
-      'Improving platform stability',
-    ],
-  },
+
 ]
 
 const container = {

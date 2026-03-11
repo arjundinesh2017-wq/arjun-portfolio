@@ -21,7 +21,7 @@ const Hero = () => {
             Arjun Dinesh
           </h1>
           <p className="mt-4 text-lg text-white/80">
-            Software Developer | Laravel Developer
+            Software Engineer | Laravel Developer
           </p>
           <p className="mt-6 text-base text-muted">
             Building scalable web applications using Laravel and modern technologies.

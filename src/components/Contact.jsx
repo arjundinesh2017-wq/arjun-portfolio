@@ -22,7 +22,7 @@ const contacts = [
     icon: FiMail,
     label: 'Email',
     value: 'arjundinesh2017@email.com',
-    href: 'mailto:arjundinesh2017@email.com',
+    href: 'mailto:arjundinesh2017@gmail.com',
   },
   {
     icon: FiPhone,
@@ -34,7 +34,7 @@ const contacts = [
     icon: FiLinkedin,
     label: 'LinkedIn',
     value: 'linkedin.com/in/arjundinesh',
-    href: 'https://linkedin.com/in/arjundinesh',
+    href: 'https://www.linkedin.com/in/arjun-dinesh-3b1671218?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
   },
 ]
 
