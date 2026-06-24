@@ -9,9 +9,9 @@ import Footer from '../components/Footer'
 
 const Home = () => {
   return (
-    <div className="relative z-10 text-frost">
+    <div className="relative z-10 min-h-screen bg-navy text-frost">
       <Navbar />
-      <main>
+      <main className="divide-y divide-frost/5">
         <Hero />
         <About />
         <Skills />

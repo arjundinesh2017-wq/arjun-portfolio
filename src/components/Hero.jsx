@@ -2,67 +2,80 @@ import { motion } from 'framer-motion'
 import portrait from '../assets/arjun-portrait.jpg.png'
 import cvFile from '../assets/Arjun_Dinesh_CV.pdf'
 
+const stats = [
+  { value: '3+', label: 'Years Experience' },
+  { value: '10+', label: 'Projects Built' },
+  { value: 'Laravel', label: 'Core Stack' },
+]
+
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+    <section id="home" className="relative min-h-screen overflow-hidden bg-navy">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute right-0 top-1/4 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-accent/[0.04] blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
       </div>
-      <div className="relative mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 pt-24 pb-16 md:pt-28 md:pb-20 lg:grid-cols-[1.1fr_0.9fr]">
+
+      <div className="relative mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-6 pt-28 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-8 lg:pb-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl"
+          className="max-w-xl"
         >
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-muted">Portfolio</p>
-          <h1 className="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
-            Arjun Dinesh
+          <p className="section-label">Portfolio</p>
+          <h1 className="mt-4 font-display text-4xl font-semibold leading-tight text-frost sm:text-5xl lg:text-[3.5rem]">
+            Arjun{' '}
+            <span className="text-accent">Dinesh</span>
           </h1>
-          <p className="mt-4 text-lg text-white/80">
-            Software Engineer | Laravel Developer
+          <p className="mt-5 text-lg text-frost/85">
+            Software Engineer <span className="text-accent/60">|</span> Laravel Developer
           </p>
-          <p className="mt-6 text-base text-muted">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
             Building scalable web applications using Laravel and modern technologies.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative overflow-hidden rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white hover:text-black"
-            >
-              <span className="relative z-10">View Projects</span>
-              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/40 to-white/0 transition group-hover:translate-x-full" />
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <motion.a href="#projects" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="btn-primary">
+              View Projects
             </motion.a>
             <motion.a
               href={cvFile}
               download="Arjun_Dinesh_CV.pdf"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative overflow-hidden rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10"
+              className="btn-outline"
             >
-              <span className="relative z-10">Download CV</span>
-              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/30 to-white/0 transition group-hover:translate-x-full" />
+              Download CV
             </motion.a>
           </div>
+
+          <div className="mt-14 grid grid-cols-3 gap-4 border-t border-frost/8 pt-8">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-xl font-semibold text-accent sm:text-2xl">{stat.value}</p>
+                <p className="mt-1 text-xs text-muted">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           className="flex justify-center lg:justify-end"
         >
           <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative overflow-hidden rounded-[32px] /10 bg-white/5 shadow-glow"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative"
           >
+            <div className="pointer-events-none absolute -inset-4 rounded-full bg-accent/5 blur-2xl" />
             <img
               src={portrait}
               alt="Arjun Dinesh portrait"
-              className="h-[300px] w-[240px] object-cover sm:h-[360px] sm:w-[280px] md:h-[420px] md:w-[320px] lg:h-[520px] lg:w-[400px]"
+              className="relative block h-[300px] w-auto max-w-[260px] object-contain object-bottom sm:h-[360px] sm:max-w-[300px] md:h-[420px] md:max-w-[340px] lg:h-[520px] lg:max-w-[400px]"
             />
           </motion.div>
         </motion.div>

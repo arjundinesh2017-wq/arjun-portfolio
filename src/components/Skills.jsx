@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiCode, FiDatabase, FiTool, FiServer, FiHeadphones, FiUsers } from 'react-icons/fi'
+import SectionHeader from './ui/SectionHeader'
+import { fadeUpContainer, fadeUpItem, chipItem } from '../lib/animations'
 
 const skillGroups = [
   {
@@ -40,88 +42,51 @@ const skillGroups = [
   },
 ]
 
-const container = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      staggerChildren: 0.12,
-    },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const chip = {
-  hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-}
-
 const Skills = () => {
   return (
     <motion.section
       id="skills"
       initial="hidden"
       whileInView="show"
-      variants={container}
-      viewport={{ once: true, amount: 0.2 }}
-      className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20"
+      variants={fadeUpContainer}
+      viewport={{ once: true, amount: 0.15 }}
+      className="section"
     >
-      <motion.p variants={item} className="text-sm uppercase tracking-[0.3em] text-muted">
-        Skills
-      </motion.p>
-      <motion.h2
-        variants={item}
-        className="mt-4 font-display text-3xl font-semibold text-white"
-      >
-        Expertise stack.
-      </motion.h2>
-      <motion.p variants={item} className="mt-4 max-w-2xl text-sm text-muted">
-        A refined toolkit for shipping stable, scalable products with a Laravel-first mindset.
-      </motion.p>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <SectionHeader
+        label="Skills"
+        title="Expertise stack."
+        description="A refined toolkit for shipping stable, scalable products with a Laravel-first mindset."
+      />
+
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group) => {
           const Icon = group.icon
           return (
             <motion.div
               key={group.title}
-              variants={item}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.25 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-glow"
+              variants={fadeUpItem}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="card"
             >
-              <div className="pointer-events-none absolute -left-1/2 top-0 h-full w-1/2 -translate-x-full bg-gradient-to-r from-white/0 via-white/10 to-white/0 transition duration-700 group-hover:translate-x-[200%]" />
-              <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-white/5 blur-2xl transition group-hover:bg-white/10" />
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10">
+                <span className="icon-box">
                   <Icon size={18} />
                 </span>
-                <h3 className="text-lg font-semibold text-white">{group.title}</h3>
+                <h3 className="text-base font-semibold text-frost">{group.title}</h3>
               </div>
-              <motion.div
-                variants={item}
-                className={`mt-6 flex flex-wrap gap-2 ${
-                  group.title === 'Soft Skills'
-                    ? 'soft-scroll max-h-24 overflow-y-auto pr-1'
-                    : ''
+
+              <div
+                className={`mt-5 flex flex-wrap gap-2 ${
+                  group.title === 'Soft Skills' ? 'soft-scroll max-h-24 overflow-y-auto pr-1' : ''
                 }`}
               >
                 {group.skills.map((skill) => (
-                  <motion.span
-                    key={skill}
-                    variants={chip}
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs text-muted transition"
-                  >
+                  <motion.span key={skill} variants={chipItem} whileHover={{ scale: 1.04 }} className="chip">
                     {skill}
                   </motion.span>
                 ))}
-              </motion.div>
+              </div>
             </motion.div>
           )
         })}

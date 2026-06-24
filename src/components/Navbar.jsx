@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -24,56 +24,73 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur transition ${
-        scrolled ? 'bg-black/85 shadow-[0_8px_30px_rgba(0,0,0,0.35)]' : 'bg-black/60'
+      className={`fixed top-0 left-0 right-0 z-50 transition duration-300 ${
+        scrolled
+          ? 'border-b border-frost/8 bg-navy/90 shadow-[0_4px_24px_rgba(2,6,23,0.6)] backdrop-blur-md'
+          : 'bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#home" className="font-display text-xl font-semibold tracking-wide">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <a href="#home" className="group flex items-center gap-2 font-display text-xl font-semibold text-frost">
+          <span className="h-2 w-2 rounded-full bg-accent transition group-hover:scale-125" />
           Arjun
         </a>
-        <div className="hidden md:flex items-center gap-8 text-sm text-muted">
+
+        <div className="hidden md:flex items-center gap-1">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative text-white/80 transition hover:text-white"
+              className="rounded-lg px-3 py-2 text-sm text-frost/75 transition hover:bg-accent/10 hover:text-accent"
             >
               {link.label}
-              <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-white transition group-hover:scale-x-100" />
             </a>
           ))}
+          <a href="#contact" className="btn-primary ml-4 !py-2.5 !text-xs">
+            Hire Me
+          </a>
         </div>
+
         <button
           type="button"
-          className="md:hidden text-white"
+          className="rounded-lg p-2 text-frost transition hover:bg-accent/10 hover:text-accent md:hidden"
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
           {open ? <FiX size={22} /> : <FiMenu size={22} />}
         </button>
       </nav>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="md:hidden px-6 pb-4"
-        >
-          <div className="flex flex-col gap-3 text-sm text-muted">
-            {links.map((link) => (
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden border-t border-frost/8 bg-navy/95 backdrop-blur-md md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 py-4">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm text-frost/80 transition hover:bg-accent/10 hover:text-accent"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
+                href="#contact"
                 onClick={() => setOpen(false)}
-                className="transition text-white/80 hover:text-white"
+                className="btn-primary mt-2 text-center"
               >
-                {link.label}
+                Hire Me
               </a>
-            ))}
-          </div>
-        </motion.div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
